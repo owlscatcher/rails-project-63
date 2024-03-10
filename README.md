@@ -1,3 +1,7 @@
+### Hexlet tests and linter status:
+
+[![Actions Status](https://github.com/owlscatcher/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/owlscatcher/rails-project-63/actions)
+
 # HexletCode
 
 TODO: Delete this and the text below, and describe your gem
