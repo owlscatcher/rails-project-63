@@ -10,7 +10,7 @@ module HexletCode # rubocop:disable Style/Documentation
 
   class Error < StandardError; end
 
-  def self.form_for(user, options = {})
+  def self.form_for(_user, options = {})
     form_options = if options.key?(:url)
                      { action: options[:url].to_s, method: "post" }
                    else
