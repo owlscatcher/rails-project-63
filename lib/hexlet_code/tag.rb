@@ -6,8 +6,8 @@ module HexletCode
 
     class << self
       def build(tag_name, options = {}, *_block)
-        attributes = options.map { |k, v| "#{k}=\"#{v}\"" }.join(" ")
-        tag_with_attr = [tag_name, attributes].join(" ").strip
+        plain_attr = HexletCode::Attributes.to_s(options)
+        tag_with_attr = [tag_name, plain_attr].join(" ").strip
 
         if SINGLE_TAGS.include?(tag_name)
           "<#{tag_with_attr}>"
