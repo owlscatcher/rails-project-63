@@ -6,14 +6,17 @@ module HexletCode
 
     class << self
       def build(tag_name, options = {}, *_block)
-        plain_attr = HexletCode::Attributes.to_s(options)
-        tag_with_attr = [tag_name, plain_attr].join(" ").strip
+        plained_options = build_options(options)
 
         if SINGLE_TAGS.include?(tag_name)
-          "<#{tag_with_attr}>"
+          "<#{tag_name} #{plained_options}>\n"
         else
-          "<#{tag_with_attr}>#{yield if block_given?}</#{tag_name}>"
+          "<#{tag_name} #{plained_options}>\n\t#{yield if block_given?}\n</#{tag_name}>\n"
         end
+      end
+
+      def build_options(options)
+        options.empty? ? "" : options.map { |k, v| "#{k}=\"#{v}\"" }.join(" ")
       end
     end
   end
