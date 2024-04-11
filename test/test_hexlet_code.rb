@@ -4,17 +4,19 @@ require "test_helper"
 
 class TestHexletCode < Minitest::Test
   def setup
-    @single_tag = load_fixture("single_tag")
-    @base_tag_with_content = load_fixture("base_tag_with_content")
-    @form_empty = load_fixture("form_empty")
-    @form_empty_with_url = load_fixture("form_empty_with_url")
-    @form_with_inputs = load_fixture("form_with_inputs")
-    @form_with_textfields = load_fixture("form_with_textfields")
-    @form_with_textfields_with_options = load_fixture("form_with_textfields_with_options")
-    @form_with_textfields_with_default_options = load_fixture("form_with_textfields_with_default_options")
+    @fixtures = {
+      single_tag: load_fixture("single_tag"),
+      base_tag_with_content: load_fixture("base_tag_with_content"),
+      form_empty: load_fixture("form_empty"),
+      form_empty_with_url: load_fixture("form_empty_with_url"),
+      form_with_inputs: load_fixture("form_with_inputs"),
+      form_with_textfields: load_fixture("form_with_textfields"),
+      form_with_textfields_with_options: load_fixture("form_with_textfields_with_options"),
+      form_with_textfields_with_default_options: load_fixture("form_with_textfields_with_default_options")
+    }
 
-    test_user = Struct.new("User", :name, :job, keyword_init: true)
-    @user = test_user.new name: "rob"
+    test_user = Struct.new("User", :name, :job, :gender, keyword_init: true)
+    @user = test_user.new name: "rob", job: "hexlet", gender: "m"
   end
 
   def test_that_it_has_a_version_number
@@ -22,19 +24,23 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_generate_single_tag
-    assert(::HexletCode::Tag.build("img", { src: "path/to/img" }) == @single_tag)
+    tag = ::HexletCode::Tag.build("img", { src: "path/to/img" })
+    assert_equal(@fixtures[:single_tag], tag)
   end
 
   def tast_generate_tag_with_content
-    assert(::HexletCode::Tag.build("div", { class: "card shadow" }) { "Card content" } == @base_tag_with_content)
+    tag = ::HexletCode::Tag.build("div", { class: "card shadow" }) { "Card content" }
+    assert_equal(@fixtures[:base_tag_with_content], tag)
   end
 
   def test_generate_empty_form
-    assert(::HexletCode.form_for(@user) == @form_empty)
+    form = ::HexletCode.form_for(@user)
+    assert_equal(@fixtures[:form_empty], form)
   end
 
   def test_generate_empty_form_with_url
-    assert(::HexletCode.form_for(@user, { url: "path/to/route" }) == @form_empty_with_url)
+    form = ::HexletCode.form_for(@user, { url: "path/to/route" })
+    assert_equal(@fixtures[:form_empty_with_url], form)
   end
 
   def test_generate_from_with_inputs
@@ -43,26 +49,22 @@ class TestHexletCode < Minitest::Test
       f.input :job
     end
 
-    p form
-    p @form_with_inputs
-    assert(form == @form_with_inputs)
+    assert_equal(@fixtures[:form_with_inputs], form)
   end
 
   def test_generate_form_with_textarea_with_options
-    skip
     form = ::HexletCode.form_for @user, url: "#" do |f|
       f.input :job, as: :text, rows: 50, cols: 50
     end
 
-    assert(form == @form_with_textfields_with_options)
+    assert_equal(@fixtures[:form_with_textfields_with_options], form)
   end
 
   def test_generate_from_with_textarea_with_default_options
-    skip
     form = ::HexletCode.form_for @user do |f|
       f.input :job, as: :text
     end
 
-    assert(form == @form_with_textfields_with_default_options)
+    assert_equal(@fixtures[:form_with_textfields_with_default_options], form)
   end
 end

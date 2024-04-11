@@ -18,30 +18,29 @@ module HexletCode
     end
 
     def render_form
-      form = Tag.build("form", @form_options) { @inputs.join("\t") }
+      form = Tag.build("form", @form_options) { @inputs.join }
 
       # Well ¯\_(ツ)_/¯, but it'll be beautiful.
       form.gsub("\n\n", "\n")
     end
 
-    def input(attr_name, options = {})
-      field_name = get_field_type(options)
-      default_options = {}
-      default_options[:name] = attr_name
-      default_options[:type] = if options.key? :as
-                                 options[:as]
-                               else
-                                 "text"
-                               end
-      default_options[:value] = @entity.public_send(attr_name)
-      tag_options = default_options.merge(options)
+    def input(attribute_name, options = {})
+      value = @entity.public_send(attribute_name)
+      field_type = get_field_type(options)
 
-      @inputs << Tag.build(tag_options[:type], tag_options)
+      case field_type
+      when "textarea"
+        @inputs << Inputs::BaseTextarea.build_tag(attribute_name, value, options)
+      when "input"
+        @inputs << Inputs::BaseInput.build_tag(attribute_name, value, options)
+      end
     end
+
+    private
 
     def get_field_type(options)
       if options.key? :as
-        options[:as].to_s
+        options[:as] == :text ? "textarea" : options[:as].to_s
       else
         "input"
       end

@@ -23,7 +23,23 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job, as: :text
+end
+```
+
+Output:
+
+```html
+<form action="#" method="post">
+  <input name="name" type="text" value="rob" />
+  <textarea name="job" cols="20" rows="40">hexlet</textarea>
+</form>
+```
 
 ## Development
 

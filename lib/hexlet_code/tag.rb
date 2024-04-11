@@ -9,9 +9,9 @@ module HexletCode
         plained_options = build_options(options)
 
         if SINGLE_TAGS.include?(tag_name)
-          "<#{tag_name} #{plained_options}>\n"
+          "<#{tag_name} #{plained_options}>"
         else
-          "<#{tag_name} #{plained_options}>\n\t#{yield if block_given?}\n</#{tag_name}>\n"
+          "<#{tag_name} #{plained_options}>#{yield if block_given?}</#{tag_name}>"
         end
       end
 
