@@ -13,7 +13,7 @@ module HexletCode
       form_url = options.fetch(:url, "#")
       form_method = options.fetch(:method, "post")
 
-      { action: form_url, method: form_method }
+      { action: form_url, method: form_method }.merge(options).except(:url)
     end
 
     def render_form

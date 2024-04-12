@@ -79,6 +79,16 @@ class TestHexletCode < Minitest::Test
     assert_equal(@fixtures[:form_with_submit_with_options], form)
   end
 
+  def test_generate_form_with_options
+    form = ::HexletCode.form_for @user, url: "posts", class: "form-horizontal" do |f|
+      f.input :name
+      f.input :job
+      f.submit "Wow"
+    end
+
+    assert_equal(@fixtures[:form_with_options], form)
+  end
+
   def test_invalid_attributes_for_input
     assert_raises(NoMethodError) do
       ::HexletCode.form_for @user, url: "#" do |f|
