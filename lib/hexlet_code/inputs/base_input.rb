@@ -2,7 +2,7 @@
 
 module HexletCode
   module Inputs
-    class BaseInput # rubocop:disable Style/Documentation
+    class BaseInput
       class << self
         def build_tag(attribute_name, value, options = {})
           options[:name] = attribute_name

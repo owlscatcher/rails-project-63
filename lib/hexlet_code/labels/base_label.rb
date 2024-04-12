@@ -2,7 +2,7 @@
 
 module HexletCode
   module Labels
-    class BaseLabel # rubocop:disable Style/Documentation
+    class BaseLabel
       class << self
         def build_tag(label_for, options)
           options[:for] = label_for

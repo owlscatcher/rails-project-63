@@ -2,7 +2,7 @@
 
 module HexletCode
   module Buttons
-    class BaseSubmit # rubocop:disable Style/Documentation
+    class BaseSubmit
       class << self
         def build_tag(value, options = {})
           options[:type] = 'submit'

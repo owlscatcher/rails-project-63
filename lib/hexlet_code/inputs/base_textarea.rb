@@ -2,7 +2,7 @@
 
 module HexletCode
   module Inputs
-    class BaseTextarea # rubocop:disable Style/Documentation
+    class BaseTextarea
       class << self
         def build_tag(attribute_name, value, options)
           options[:name] = attribute_name

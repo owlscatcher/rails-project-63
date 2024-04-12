@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Form # rubocop:disable Style/Documentation
+  class Form
     def initialize(entity, options = {})
       @entity = entity
       @inputs = []

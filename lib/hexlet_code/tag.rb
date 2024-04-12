@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module Tag # rubocop:disable Style/Documentation
+  module Tag
     SINGLE_TAGS = %w[br hr meta input img meta].freeze
 
     class << self

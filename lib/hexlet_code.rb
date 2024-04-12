@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode # rubocop:disable Style/Documentation
+module HexletCode
   autoload :VERSION, "#{__dir__}/hexlet_code/version"
   autoload :Tag, "#{__dir__}/hexlet_code/tag"
   autoload :Form, "#{__dir__}/hexlet_code/form"
