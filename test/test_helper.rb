@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "hexlet_code"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'hexlet_code'
 
-require "minitest/autorun"
+require 'minitest/autorun'
 
-def load_fixture(fixture_name, path = "fixtures")
-  File.read("#{__dir__}/#{path}/#{fixture_name}.html").gsub("\n", "")
+def load_fixture(fixture_name, path = 'fixtures')
+  File.read("#{__dir__}/#{path}/#{fixture_name}.html").gsub("\n", '')
 end
 
 def generate_fixtures
@@ -17,8 +17,8 @@ def generate_fixtures
   end
 end
 
-def generate_fixture_list(path = "fixtures")
+def generate_fixture_list(path = 'fixtures')
   Dir.entries("#{__dir__}/#{path}")
-     .reject { |file_name| [".", ".."].include?(file_name) }
-     .map { |file_name| file_name.gsub(".html", "").to_sym }
+     .reject { |file_name| ['.', '..'].include?(file_name) }
+     .map { |file_name| file_name.gsub('.html', '').to_sym }
 end

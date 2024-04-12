@@ -10,14 +10,14 @@ module HexletCode
     end
 
     def build_options(options = {})
-      form_url = options.fetch(:url, "#")
-      form_method = options.fetch(:method, "post")
+      form_url = options.fetch(:url, '#')
+      form_method = options.fetch(:method, 'post')
 
       { action: form_url, method: form_method }.merge(options).except(:url)
     end
 
     def render_form
-      Tag.build("form", @form_options) { [@inputs, @buttons].join }
+      Tag.build('form', @form_options) { [@inputs, @buttons].join }
     end
 
     def input(attribute_name, options = {})
@@ -26,14 +26,14 @@ module HexletCode
       label = label_for(attribute_name, options)
 
       case field_type
-      when "textarea"
+      when 'textarea'
         @inputs << [label, Inputs::BaseTextarea.build_tag(attribute_name, value, options.except(:label))].join
-      when "input"
+      when 'input'
         @inputs << [label, Inputs::BaseInput.build_tag(attribute_name, value, options.except(:label))].join
       end
     end
 
-    def submit(value = "Save", options = {})
+    def submit(value = 'Save', options = {})
       @buttons << Buttons::BaseSubmit.build_tag(value, options)
     end
 
@@ -41,15 +41,15 @@ module HexletCode
 
     def get_field_type(options)
       if options.key? :as
-        options[:as] == :text ? "textarea" : options[:as].to_s
+        options[:as] == :text ? 'textarea' : options[:as].to_s
       else
-        "input"
+        'input'
       end
     end
 
     def label_for(attribute_name, options = {})
       if options.key? :label
-        options[:label] ? Labels::BaseLabel.build_tag(attribute_name, options.except(:label)) : ""
+        options[:label] ? Labels::BaseLabel.build_tag(attribute_name, options.except(:label)) : ''
       else
         Labels::BaseLabel.build_tag(attribute_name, options.except(:label))
       end

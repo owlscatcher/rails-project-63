@@ -9,7 +9,7 @@ module HexletCode
           options[:cols] = 20 unless options.key? :cols
           options[:rows] = 40 unless options.key? :rows
 
-          Tag.build("textarea", options.except(:as)) { value }
+          Tag.build('textarea', options.except(:as)) { value }
         end
       end
     end

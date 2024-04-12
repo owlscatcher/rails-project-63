@@ -6,10 +6,10 @@ module HexletCode
       class << self
         def build_tag(attribute_name, value, options = {})
           options[:name] = attribute_name
-          options[:type] = "text"
+          options[:type] = 'text'
           options[:value] = value
 
-          Tag.build("input", options)
+          Tag.build('input', options)
         end
       end
     end

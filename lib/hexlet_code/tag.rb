@@ -16,7 +16,7 @@ module HexletCode
       end
 
       def build_options(options)
-        options.empty? ? "" : options.map { |k, v| "#{k}=\"#{v}\"" }.join(" ")
+        options.empty? ? '' : options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')
       end
     end
   end

@@ -5,10 +5,10 @@ module HexletCode
     class BaseSubmit # rubocop:disable Style/Documentation
       class << self
         def build_tag(value, options = {})
-          options[:type] = "submit"
+          options[:type] = 'submit'
           options[:value] = value
 
-          Tag.build("input", options)
+          Tag.build('input', options)
         end
       end
     end
