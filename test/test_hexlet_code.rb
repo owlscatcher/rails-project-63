@@ -10,7 +10,6 @@ class TestHexletCode < Minitest::Test
       form_empty: load_fixture("form_empty"),
       form_empty_with_url: load_fixture("form_empty_with_url"),
       form_with_inputs: load_fixture("form_with_inputs"),
-      form_with_textfields: load_fixture("form_with_textfields"),
       form_with_textfields_with_options: load_fixture("form_with_textfields_with_options"),
       form_with_textfields_with_default_options: load_fixture("form_with_textfields_with_default_options")
     }
