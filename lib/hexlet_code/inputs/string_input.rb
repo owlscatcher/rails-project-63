@@ -4,6 +4,8 @@ module HexletCode
   module Inputs
     class StringInput < BaseInput
       def build_input
+        @input[:type] = 'text'
+
         Tag.build('input', @input.except(:as, :label))
       end
 
