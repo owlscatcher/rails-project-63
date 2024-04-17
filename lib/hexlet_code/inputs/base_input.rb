@@ -4,12 +4,8 @@ module HexletCode
   module Inputs
     class BaseInput
       class << self
-        def build_tag(attribute_name, value, options = {})
-          options[:name] = attribute_name
-          options[:type] = 'text'
-          options[:value] = value
-
-          Tag.build('input', options)
+        def build_label(options)
+          options[:label] ? Tag.build('label', { for: options[:name] }) { options[:name].capitalize } : ''
         end
       end
     end

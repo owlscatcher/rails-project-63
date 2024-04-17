@@ -3,16 +3,15 @@
 module HexletCode
   autoload :VERSION, "#{__dir__}/hexlet_code/version"
   autoload :Tag, "#{__dir__}/hexlet_code/tag"
-  autoload :Form, "#{__dir__}/hexlet_code/form"
+  autoload :FormBuilder, "#{__dir__}/hexlet_code/form_builder"
+  autoload :FormRender, "#{__dir__}/hexlet_code/form_render"
   autoload :Inputs, "#{__dir__}/hexlet_code/inputs/inputs"
-  autoload :Buttons, "#{__dir__}/hexlet_code/buttons/buttons"
-  autoload :Labels, "#{__dir__}/hexlet_code/labels/labels"
 
   class Error < StandardError; end
 
   def self.form_for(entity, options = {})
-    form = Form.new(entity, options)
-    yield(form) if block_given?
-    form.render_form
+    builded_form = FormBuilder.new(entity, options)
+    yield(builded_form) if block_given?
+    FormRender.render_html(builded_form)
   end
 end
