@@ -3,10 +3,12 @@
 module HexletCode
   module Inputs
     class BaseInput
-      class << self
-        def build_label(options)
-          options[:label] ? Tag.build('label', { for: options[:name] }) { options[:name].capitalize } : ''
-        end
+      def initialize(input)
+        @input = input
+      end
+
+      def build_label
+        @input[:label] ? Tag.build('label', { for: @input[:name] }) { @input[:name].capitalize } : ''
       end
     end
   end

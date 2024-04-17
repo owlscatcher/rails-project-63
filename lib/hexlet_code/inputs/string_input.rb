@@ -3,14 +3,12 @@
 module HexletCode
   module Inputs
     class StringInput < BaseInput
-      class << self
-        def build_input(options)
-          Tag.build('input', options.except(:as, :label))
-        end
+      def build_input
+        Tag.build('input', @input.except(:as, :label))
+      end
 
-        def build(options)
-          build_label(options) + build_input(options)
-        end
+      def build
+        build_label + build_input
       end
     end
   end

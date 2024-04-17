@@ -12,6 +12,6 @@ module HexletCode
   def self.form_for(entity, options = {})
     builded_form = FormBuilder.new(entity, options)
     yield(builded_form) if block_given?
-    FormRender.render_html(builded_form)
+    FormRender.render_html(builded_form.form_template)
   end
 end

@@ -3,18 +3,14 @@
 module HexletCode
   module FormRender
     class << self
-      def render_html(form)
-        inputs_options = form.form_template[:inputs]
-        submit_options = form.form_template[:submit]
-        submit_tag = Tag.build('input', submit_options) unless submit_options.empty?
+      def render_html(form_template)
+        submit_tag = Tag.build('input', form_template[:submit]) unless form_template[:submit].empty?
 
-        input_tags = inputs_options.map do |input|
-          "HexletCode::Inputs::#{input[:type].capitalize}Input".constantize.build(input)
+        input_tags = form_template[:inputs].map do |input|
+          "HexletCode::Inputs::#{input[:type].capitalize}Input".constantize.new(input).build
         end
 
-        Tag.build('form', form.form_template[:options]) do
-          [input_tags, submit_tag].join
-        end
+        Tag.build('form', form_template[:options]) { [input_tags, submit_tag].join }
       end
     end
   end
